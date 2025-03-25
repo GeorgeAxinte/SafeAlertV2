@@ -6,13 +6,21 @@ import android.telephony.SmsManager;
 import android.widget.Toast;
 
 public class ScheduledMessage {
+    private static ScheduledMessage instance;
     private final Context context;
     private final Handler handler;
     private Runnable messageRunnable;
 
-    public ScheduledMessage(Context context) {
-        this.context = context;
+    private ScheduledMessage(Context context) {
+        this.context = context.getApplicationContext();
         this.handler = new Handler();
+    }
+
+    public static ScheduledMessage getInstance(Context context) {
+        if (instance == null) {
+            instance = new ScheduledMessage(context);
+        }
+        return instance;
     }
 
     public void scheduleMessage(String phoneNumber, String message, long delayMillis) {
@@ -22,7 +30,6 @@ public class ScheduledMessage {
             messageRunnable = null;
         };
         handler.postDelayed(messageRunnable, delayMillis);
-
         Toast.makeText(context, "Message scheduled. It will be sent automatically if not canceled.", Toast.LENGTH_SHORT).show();
     }
 

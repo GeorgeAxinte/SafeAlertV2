@@ -23,7 +23,7 @@ public class ScheduleMessageActivity extends AppCompatActivity {
         editTextTime = findViewById(R.id.editTextTime);
         scheduleButton = findViewById(R.id.scheduleButton);
 
-        scheduledMessageSender = new ScheduledMessage(this);
+        scheduledMessageSender = ScheduledMessage.getInstance(this);
 
         scheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +35,7 @@ public class ScheduleMessageActivity extends AppCompatActivity {
                     try {
                         long delayMillis = Long.parseLong(delayStr) * 1000;
                         scheduledMessageSender.scheduleMessage(phoneNumber, message, delayMillis);
+                        finish();
                     } catch (NumberFormatException e) {
                         Toast.makeText(ScheduleMessageActivity.this, "Enter a valid number for time!", Toast.LENGTH_SHORT).show();
                     }
@@ -43,6 +44,5 @@ public class ScheduleMessageActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 }

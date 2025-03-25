@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements WeatherHelper.Wea
         weatherHelper = new WeatherHelper(this, this);
         earthquakeHelper = new EarthquakeHelper(this, this);
         sosManager = new SOSManager(this);
-        scheduledMessageSender = new ScheduledMessage(this);
+        scheduledMessageSender = ScheduledMessage.getInstance(this);
 
 
         executorService = Executors.newSingleThreadExecutor();
@@ -121,6 +121,12 @@ public class MainActivity extends AppCompatActivity implements WeatherHelper.Wea
         registerReceiver(batteryAlert, batteryIntentFilter);
 
         Button scheduleMessageButton = findViewById(R.id.scheduleMessageButton);
+        scheduleMessageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ScheduleMessageActivity.class));
+            }
+        });
         scheduleMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
