@@ -1,0 +1,3 @@
+SafeAlert – Warning and Emergency System
+SafeAlert is a mobile app designed to improve user safety by sending automatic alerts with GPS location via SMS, email, and emergency calls. Key features include: quick SOS activation via app button, physical shortcut, or voice command; automatic emergency calls if alerts aren’t canceled; inactivity detection sending alerts if no movement is detected; geofencing alerts when leaving safe zones; weather and safety notifications for extreme conditions; low battery warnings with final location sharing; and scheduled automatic messages to keep contacts informed about the user’s status.
+
